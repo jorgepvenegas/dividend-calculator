@@ -1,0 +1,23 @@
+{
+  "name": "dividend-portfolios",
+  "version": "0.0.1",
+  "description": "A dividend portfolio calculator",
+  "main": "src/index.js",
+  "author": "@jorgepvenegas",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src/ -d lib/",
+    "prepublish": "yarn run build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-flow": "^7.10.4",
+    "flow-bin": "^0.129.0"
+  },
+  "dependencies": {
+    "components": "^0.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
