@@ -27,36 +27,33 @@ const Stock = (props: StockProps) => {
     setTotalDividends(((totalOwned * dividendYield) / 100).toFixed(2));
   }, [totalOwned]);
 
-  // useEffect(() => {
-  //   setTotalDividends(amount * props.dividendYield);
-  // }, [dividendYield]);
-
   return (
     <tr>
       <td>
         {/* name */}
-        <button>x</button>
         {props.name}
+        {/* <button>x</button> */}
       </td>
-      <td>
+      <td className="font-mono text-right">
         {/* Dividend yield */}
-        {dividendYield}
+        {dividendYield} %
       </td>
-      <td>
+      <td className="font-mono text-right">
         {/* Share price */}${sharePrice}
       </td>
-      <td>
+      <td className="font-mono text-right">
         {/* Shares owned */}
         <input
           type="number"
+          className="shares-number"
           value={sharesOwned}
           onChange={(e) => setSharesOwned(e.target.value)}
         />
       </td>
-      <td>
+      <td className="font-mono text-right">
         {/* Total $ owned  */}${totalOwned}
       </td>
-      <td>
+      <td className="font-mono text-right">
         {/* Yearly dividends */}${totalDividends}
       </td>
     </tr>

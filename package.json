@@ -16,8 +16,10 @@
     "flow-bin": "^0.129.0"
   },
   "dependencies": {
-    "components": "^0.1.0",
+    "autoprefixer": "^9.8.5",
+    "postcss-cli": "^7.1.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "tailwindcss": "^1.5.1"
   }
 }

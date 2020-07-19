@@ -10,15 +10,15 @@ type SelectedStocksProps = {
 
 const SelectedStocks = (props: SelectedStocksProps) => {
   return (
-    <table>
+    <table id="selected-stocks" className="container">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Div yield (%)</th>
-          <th>Price</th>
-          <th>Shares owned</th>
-          <th>Total owned</th>
-          <th>Yearly dividend</th>
+          <th className="w-1/6">Name</th>
+          <th className="w-1/6">Dividend yield</th>
+          <th className="w-1/6">Price</th>
+          <th className="w-1/6">Shares owned</th>
+          <th className="w-1/6">Total owned</th>
+          <th className="w-1/6">Yearly dividend</th>
         </tr>
       </thead>
       <tbody>

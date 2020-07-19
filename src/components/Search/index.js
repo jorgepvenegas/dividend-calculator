@@ -19,15 +19,18 @@ const Search = () => {
     }
   };
   return (
-    <>
-      <input
-        type="text"
-        value={term}
-        onChange={(e) => setTerm(e.target.value)}
-        onKeyPress={handleKeyPress}
-      />
+    <div>
+      <div id="search" className="flex flex-wrap">
+        <input
+          type="text"
+          value={term}
+          onChange={(e) => setTerm(e.target.value)}
+          onKeyPress={handleKeyPress}
+          placeholder="TSLA"
+        />
+      </div>
       <SelectedStocks stocks={stocks} />
-    </>
+    </div>
   );
 };
 
