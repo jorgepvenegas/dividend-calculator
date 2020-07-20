@@ -4,18 +4,15 @@ import ReactDOM from "react-dom";
 type StockProps = {
   name: string,
   dividendYield: number,
+  price: number,
 };
 
 const Stock = (props: StockProps) => {
   const [sharesOwned, setSharesOwned] = useState(0);
   const [totalDividends, setTotalDividends] = useState(0);
-  const [sharePrice, setSharePrice] = useState(
-    (Math.random() * 1000).toFixed(2)
-  );
   const [totalOwned, setTotalOwned] = useState(0);
-  const [dividendYield, setDividendYield] = useState(
-    (Math.random() * 10).toFixed(2)
-  );
+  const [sharePrice, setSharePrice] = useState(props.price);
+  const [dividendYield, setDividendYield] = useState(props.dividendYield);
 
   // Calculate total $ based on shares owned
   useEffect(() => {
@@ -31,7 +28,12 @@ const Stock = (props: StockProps) => {
     <tr>
       <td>
         {/* name */}
-        {props.name}
+        {props.symbol}
+        {/* <button>x</button> */}
+      </td>
+      <td>
+        {/* name */}
+        {props.companyName}
         {/* <button>x</button> */}
       </td>
       <td className="font-mono text-right">

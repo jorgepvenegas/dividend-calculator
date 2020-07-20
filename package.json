@@ -16,6 +16,8 @@
     "flow-bin": "^0.129.0"
   },
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
     "autoprefixer": "^9.8.5",
     "postcss-cli": "^7.1.1",
     "react": "^16.13.1",
