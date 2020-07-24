@@ -1,13 +1,23 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+// @flow
+
+import React, { useState, useContext } from "react";
+import AppContext from "./../../context/App";
 
 const Total = () => {
+  const { amounts } = useContext(AppContext);
+  let totalOwned = 0;
+  let totalDividends = 0;
+
+  Object.keys(amounts).map((a) => {
+    totalOwned = totalOwned + amounts[a].totalOwned;
+    totalDividends = totalDividends + amounts[a].totalDividends;
+  });
+
   return (
-    <div className="container flex flex-row-reverse">
-      <div id="total" className="w-1/6">
-        $100.00
-      </div>
-    </div>
+    <tr id="total">
+      <td colSpan="6">$ {totalOwned.toFixed(2)}</td>
+      <td>$ {totalDividends.toFixed(2)}</td>
+    </tr>
   );
 };
 

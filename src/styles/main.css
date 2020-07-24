@@ -22,6 +22,10 @@
   @apply bg-gray-100;
 }
 
+#selected-stocks tbody tr:nth-last-child(1) {
+  @apply bg-yellow-100;
+}
+
 #selected-stocks td,
 #selected-stocks th {
   @apply p-3 border;

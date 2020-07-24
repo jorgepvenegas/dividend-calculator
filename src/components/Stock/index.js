@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import AppContext from "../../context/App";
 import ReactDOM from "react-dom";
 
 type StockProps = {
@@ -8,21 +9,26 @@ type StockProps = {
 };
 
 const Stock = (props: StockProps) => {
-  const [sharesOwned, setSharesOwned] = useState(0);
-  const [totalDividends, setTotalDividends] = useState(0);
-  const [totalOwned, setTotalOwned] = useState(0);
-  const [sharePrice, setSharePrice] = useState(props.price);
-  const [dividendYield, setDividendYield] = useState(props.dividendYield);
+  const { stocks, setStocks, amounts, setAmounts } = useContext(AppContext);
+  const [sharesOwned, setSharesOwned] = useState(props.sharesOwned);
+  const [totalDividends, setTotalDividends] = useState(props.totalDividends);
+  const [totalOwned, setTotalOwned] = useState(props.totalOwned);
 
   // Calculate total $ based on shares owned
   useEffect(() => {
-    setTotalOwned((sharesOwned * sharePrice).toFixed(2));
-  }, [sharesOwned, sharePrice]);
-
-  // Calculate total dividends based on total $
-  useEffect(() => {
-    setTotalDividends(((totalOwned * dividendYield) / 100).toFixed(2));
-  }, [totalOwned]);
+    const { symbol, sharePrice, dividendYield } = props;
+    const totalOwned = Number((sharesOwned * sharePrice).toFixed(2));
+    const totalDividends = Number(
+      ((totalOwned * props.dividendYield) / 100).toFixed(2)
+    );
+    setTotalOwned(totalOwned);
+    setTotalDividends(totalDividends);
+    amounts[symbol] = {
+      totalOwned,
+      totalDividends,
+    };
+    setAmounts({ ...amounts });
+  }, [sharesOwned]);
 
   return (
     <tr>
@@ -38,10 +44,10 @@ const Stock = (props: StockProps) => {
       </td>
       <td className="font-mono text-right">
         {/* Dividend yield */}
-        {dividendYield} %
+        {props.dividendYield} %
       </td>
       <td className="font-mono text-right">
-        {/* Share price */}${sharePrice}
+        {/* Share price */}${props.sharePrice}
       </td>
       <td className="font-mono text-right">
         {/* Shares owned */}

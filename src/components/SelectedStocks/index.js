@@ -1,14 +1,13 @@
 // @flow
 
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ReactDOM from "react-dom";
 import Stock from "../Stock";
+import AppContext from "../../context/App";
+import Total from "../../components/Total";
 
-type SelectedStocksProps = {
-  stocks: Array<string>,
-};
-
-const SelectedStocks = (props: SelectedStocksProps) => {
+const SelectedStocks = () => {
+  const { stocks } = useContext(AppContext);
   return (
     <table id="selected-stocks" className="container">
       <thead>
@@ -23,9 +22,10 @@ const SelectedStocks = (props: SelectedStocksProps) => {
         </tr>
       </thead>
       <tbody>
-        {props.stocks.map((s, i) => (
+        {stocks.map((s, i) => (
           <Stock key={i} {...s} />
         ))}
+        <Total />
       </tbody>
     </table>
   );
