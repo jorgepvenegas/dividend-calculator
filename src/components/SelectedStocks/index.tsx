@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Stock from "../Stock";
 import AppContext, {IStock} from "../../context/App";
 
-const SelectedStocks = () => {
+const SelectedStocks:React.FC = () => {
   const { state: {stocks} } = useContext(AppContext);
   return (
     <table id="selected-stocks" className="container">

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import AppContext from "../../context/App";
 import { IStock } from "../../context/App";
 
-const Stock = (props: IStock) => {
+const Stock:React.FC<IStock> = (props) => {
   const { state: {amounts}, dispatch } = useContext(AppContext);
   const [sharesOwned, setSharesOwned] = useState(props.sharesOwned);
   const [totalDividends, setTotalDividends] = useState(props.totalDividends);

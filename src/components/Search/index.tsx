@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import AppContext, { IStock } from "../../context/App";
 import { getDividend, getQuote } from "../../api";
 
-const Search = () => {
+const Search:React.FC = () => {
   const [term, setTerm] = useState("");
   const { dispatch } = useContext(AppContext);
 
