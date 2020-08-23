@@ -4,10 +4,18 @@ import { getDividend, getQuote } from "../../api";
 
 const Search:React.FC = () => {
   const [term, setTerm] = useState("");
-  const { dispatch } = useContext(AppContext);
+  const { state: {stocks},dispatch } = useContext(AppContext);
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
+
+      // Check if ticker is already present
+      const isPresent = !!stocks.find(s => s.symbol.toLowerCase() === term.toLocaleLowerCase());
+
+      if(isPresent) {
+        setTerm("");
+        return;
+      };
       
       Promise.all([getDividend(term), getQuote(term)]).then((responses) => {
         const [dividend, quote] = responses;

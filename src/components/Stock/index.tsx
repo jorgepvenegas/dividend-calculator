@@ -3,10 +3,16 @@ import AppContext from "../../context/App";
 import { IStock } from "../../context/App";
 
 const Stock:React.FC<IStock> = (props) => {
-  const { state: {amounts}, dispatch } = useContext(AppContext);
-  const [sharesOwned, setSharesOwned] = useState(props.sharesOwned);
-  const [totalDividends, setTotalDividends] = useState(props.totalDividends);
-  const [totalOwned, setTotalOwned] = useState(props.totalOwned);
+  const { state: {stocks}, dispatch } = useContext(AppContext);
+  const [sharesOwned, setSharesOwned] = useState(0);
+
+  const removeStock = ticker => {
+    const updatedStocks = stocks.filter( s => s.symbol !== ticker);
+    dispatch({
+      type: 'UPDATE_STOCKS',
+      payload: updatedStocks
+    })
+  }
 
   // Calculate total $ based on shares owned
   useEffect(() => {
@@ -15,17 +21,22 @@ const Stock:React.FC<IStock> = (props) => {
     const totalDividends = Number(
       ((totalOwned * dividendYield) / 100).toFixed(2)
     );
-    setTotalOwned(totalOwned);
-    setTotalDividends(totalDividends);
 
-    amounts[symbol] = {
-      totalOwned,
-      totalDividends,
-    };
+    const updatedStocks = stocks.map( s => {
+      if(s.symbol === symbol) {
+        return {
+          ...s,
+          totalOwned,
+          sharesOwned,
+          totalDividends
+        }
+      }
+      return s;
+    })
 
     dispatch({
-      type: 'SET_AMOUNT',
-      payload: amounts
+      type: 'UPDATE_STOCKS',
+      payload: updatedStocks
     })
 
   }, [sharesOwned]);
@@ -33,7 +44,8 @@ const Stock:React.FC<IStock> = (props) => {
   return (
     <tr>
       <td>
-        {props.symbol}
+        <span className="float-left">{props.symbol}</span>
+        <button onClick={ () => removeStock(props.symbol)} className="float-right rounded bg-gray-600 px-2 text-bold hover:bg-gray-700 text-white">x</button>
       </td>
       <td>
         {props.companyName}
@@ -48,15 +60,16 @@ const Stock:React.FC<IStock> = (props) => {
         <input
           type="number"
           className="shares-number"
-          value={sharesOwned}
+          min={0}
+          value={props.sharesOwned}
           onChange={(e: React.FormEvent<HTMLInputElement>) => setSharesOwned(parseInt(e.currentTarget.value))}
         />
       </td>
       <td className="font-mono text-right">
-        ${totalOwned}
+        ${props.totalOwned}
       </td>
       <td className="font-mono text-right">
-        ${totalDividends}
+        ${props.totalDividends}
       </td>
     </tr>
   );

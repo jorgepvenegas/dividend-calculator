@@ -2,7 +2,6 @@ import React, { useReducer } from "react";
 import ReactDOM from "react-dom";
 import Search from "./components/Search";
 import SelectedStocks from "./components/SelectedStocks";
-import Total from "./components/Total";
 import AppContext, { initialState, reducer } from "./context/App";
 
 import "./styles/main.css";
@@ -16,7 +15,6 @@ const App:React.FC = () => {
       <AppContext.Provider value={{ state, dispatch }}>
         <Search />
         <SelectedStocks />
-        <Total />
       </AppContext.Provider>
     </div>
   );

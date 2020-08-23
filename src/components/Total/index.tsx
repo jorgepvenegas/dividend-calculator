@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 import AppContext from "../../context/App";
 
 const Total:React.FC = () => {
-  const { state: {amounts} } = useContext(AppContext);
+  const { state: {stocks, amounts} } = useContext(AppContext);
   let totalOwned = 0;
   let totalDividends = 0;
 
-  Object.keys(amounts).map((a) => {
-    totalOwned = totalOwned + amounts[a].totalOwned;
-    totalDividends = totalDividends + amounts[a].totalDividends;
-  });
+  stocks.forEach( s => {
+    totalOwned += s.totalOwned;
+    totalDividends += s.totalDividends;
+  })
 
   return (
     <tr id="total">

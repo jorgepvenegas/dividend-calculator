@@ -32,10 +32,10 @@ export const reducer = (state: IState, action: IAction): IState => {
         ...state,
         stocks: [...state.stocks, action.payload]
       }
-    case 'SET_AMOUNT': 
+    case 'UPDATE_STOCKS':
       return {
-       ...state,
-       amounts: action.payload
+        ...state,
+        stocks: [...action.payload]
       }
     default:
       return state

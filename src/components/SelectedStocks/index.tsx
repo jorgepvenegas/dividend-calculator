@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Stock from "../Stock";
 import AppContext, {IStock} from "../../context/App";
+import Total from "./../../components/Total";
 
 const SelectedStocks:React.FC = () => {
   const { state: {stocks} } = useContext(AppContext);
@@ -21,6 +22,7 @@ const SelectedStocks:React.FC = () => {
         {stocks.map((s: IStock, i: number) => (
           <Stock key={i} {...s} />
         ))}
+        <Total />
       </tbody>
     </table>
   );
