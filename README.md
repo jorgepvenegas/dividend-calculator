@@ -1,6 +1,8 @@
-# Dividend Portfolio Calculator
+# Dividend Calculator
 
 Basic UI to calculate dividends on assets invested in the stock market. Data is obtained from IEXCloud API.
+
+![Dividend Calculator](https://github.com/jorgepvenegas/dividend-calculator/blob/master/img/div-calculator.gif?raw=true)
 
 ## How to use it
 
