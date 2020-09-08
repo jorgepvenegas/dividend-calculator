@@ -1,4 +1,4 @@
-const TOKEN = "your-token-:)";
+const TOKEN = "replace-your-token-here";
 const BASE_URL = "https://cloud.iexapis.com/stable";
 
 export const config = {
