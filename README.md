@@ -8,4 +8,5 @@ Basic UI to calculate dividends on assets invested in the stock market.
 
 1. You'll need the [stonks-api](https://github.com/jorgepvenegas/stonks-api) up and running.
 1. Clone the repo and install dependencies with `npm install`.
-1. Have fun :)
+2. Start the project with `npm run start`.
+3. Have fun :)
