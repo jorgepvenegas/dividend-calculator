@@ -1,51 +1,37 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import AppContext from "../../context/App";
 import { Stock } from "../../../types/main";
 
-const StockRow:React.FC<Stock> = (props) => {
-  const { state: {stocks}, dispatch } = useContext(AppContext);
-  const [sharesOwned, setSharesOwned] = useState(0);
+const StockRow: React.FC<Stock> = (props) => {
+  const { dispatch } = useContext(AppContext);
 
-  const removeStock = (ticker: string) => {
-    const updatedStocks = stocks.filter( (s: { symbol: string; }) => s.symbol !== ticker);
+  const removeStock = (symbol: string) => {
+
     dispatch({
-      type: 'UPDATE_STOCKS',
-      payload: updatedStocks
+      type: 'REMOVE_STOCK',
+      payload: { symbol }
     })
   }
 
-  // Calculate total $ based on shares owned
-  useEffect(() => {
+  const handleSharesOwned = (sharesOwned: number) => {
     const { symbol, sharePrice, dividendYield } = props;
-    const totalOwned = Number((sharesOwned * sharePrice).toFixed(2));
-    const totalDividends = Number(
-      ((totalOwned * dividendYield) / 100).toFixed(2)
-    );
-
-    const updatedStocks = stocks.map( (s: { symbol: string; }) => {
-      if(s.symbol === symbol) {
-        return {
-          ...s,
-          totalOwned,
-          sharesOwned,
-          totalDividends
-        }
-      }
-      return s;
-    })
 
     dispatch({
-      type: 'UPDATE_STOCKS',
-      payload: updatedStocks
+      type: 'UPDATE_STOCK',
+      payload: {
+        symbol,
+        sharesOwned,
+        sharePrice,
+        dividendYield
+      }
     })
-
-  }, [sharesOwned]);
+  }
 
   return (
     <tr>
       <td>
         <span className="float-left">{props.symbol}</span>
-        <button onClick={ () => removeStock(props.symbol)} className="float-right rounded bg-gray-600 px-2 text-bold hover:bg-gray-700 text-white">x</button>
+        <button onClick={() => removeStock(props.symbol)} className="float-right rounded bg-gray-600 px-2 text-bold hover:bg-gray-700 text-white">x</button>
       </td>
       <td>
         {props.companyName}
@@ -62,7 +48,7 @@ const StockRow:React.FC<Stock> = (props) => {
           className="shares-number"
           min={0}
           value={props.sharesOwned}
-          onChange={(e: React.FormEvent<HTMLInputElement>) => setSharesOwned(parseInt(e.currentTarget.value))}
+          onChange={(e: React.FormEvent<HTMLInputElement>) => handleSharesOwned(parseInt(e.currentTarget.value))}
         />
       </td>
       <td className="font-mono text-right">
