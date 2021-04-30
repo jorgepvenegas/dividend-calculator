@@ -1,14 +1,11 @@
 # Dividend Calculator
 
-Basic UI to calculate dividends on assets invested in the stock market. Data is obtained from IEXCloud API.
+Basic UI to calculate dividends on assets invested in the stock market.
 
 ![Dividend Calculator](https://github.com/jorgepvenegas/dividend-calculator/blob/master/img/div-calculator.gif?raw=true)
 
 ## How to use it
 
-- Clone the repo.
-- Once in the root directory, install dependencies with `npm install`.
-- You'll need a IEX Cloud API token. Create a free [IEX Cloud](https://iexcloud.io/) account to get one.
-- Replace the `TOKEN` const value `config.tsx`. This is required to query the IEXCloud API.
-- Start the application with `npx parcel index.html`. If you have `parcel` installed globally you can just do `parcel index.html`.
-- Have fun :)
+1. You'll need the [stonks-api](https://github.com/jorgepvenegas/stonks-api) up and running.
+1. Clone the repo and install dependencies with `npm install`.
+1. Have fun :)
