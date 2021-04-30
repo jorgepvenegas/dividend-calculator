@@ -1,31 +1,7 @@
 import React from "react";
+import { State, Action } from "../../types/main";
 
-export interface IStock {
-  symbol: string,
-  sharePrice: number,
-  dividendYield: number,
-  companyName: string,
-  sharesOwned: number,
-  totalDividends: number,
-  totalOwned: number
-}
-
-interface IAction {
-  type: string,
-  payload: any
-}
-
-interface IState {
-  stocks: IStock[],
-  amounts: {},
-}
-
-export const initialState: IState = {
-  stocks: [],
-  amounts: {}
-}
-
-export const reducer = (state: IState, action: IAction): IState => {
+export const reducer = (state: State, action: Action): State => {
   switch(action.type) {
     case 'SET_STOCK':
       return {
@@ -42,5 +18,10 @@ export const reducer = (state: IState, action: IAction): IState => {
   }
 }
 
-const AppContext = React.createContext<IState | any>(initialState);
+export const initialState: State = {
+  stocks: [],
+  amounts: {}
+}
+
+const AppContext = React.createContext<State | any>(initialState);
 export default AppContext;

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import AppContext from "../../context/App";
 
 const Total:React.FC = () => {
-  const { state: {stocks, amounts} } = useContext(AppContext);
+  const { state: {stocks} } = useContext(AppContext);
   let totalOwned = 0;
   let totalDividends = 0;
 

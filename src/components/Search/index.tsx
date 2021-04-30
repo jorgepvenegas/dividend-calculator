@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
-import AppContext, { IStock } from "../../context/App";
+import AppContext from "../../context/App";
 import { getQuote } from "../../api";
+import { Stock } from "../../../types/main";
 
 const Search:React.FC = () => {
   const [term, setTerm] = useState("");
@@ -21,7 +22,7 @@ const Search:React.FC = () => {
         // if (dividend && quote) {
           const { dividendYield, companyName, symbol, close: sharePrice } : any = response;
 
-          const newStock: IStock = {
+          const newStock: Stock = {
             symbol,
             sharePrice,
             dividendYield: dividendYield

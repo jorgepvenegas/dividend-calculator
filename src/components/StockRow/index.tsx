@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import AppContext from "../../context/App";
-import { IStock } from "../../context/App";
+import { Stock } from "../../../types/main";
 
-const Stock:React.FC<IStock> = (props) => {
+const StockRow:React.FC<Stock> = (props) => {
   const { state: {stocks}, dispatch } = useContext(AppContext);
   const [sharesOwned, setSharesOwned] = useState(0);
 
@@ -75,4 +75,4 @@ const Stock:React.FC<IStock> = (props) => {
   );
 };
 
-export default React.memo(Stock);
+export default React.memo(StockRow);
