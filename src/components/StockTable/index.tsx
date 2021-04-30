@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import Stock from "../Stock";
-import AppContext, {IStock} from "../../context/App";
-import Total from "./../../components/Total";
+import StockRow from "../StockRow";
+import {Stock} from "../../../types/main";
+import AppContext from "../../context/App"
+import Total from "../Total";
 
-const SelectedStocks:React.FC = () => {
+const StockTable:React.FC = () => {
   const { state: {stocks} } = useContext(AppContext);
   return (
     <table id="selected-stocks" className="container">
@@ -19,8 +20,8 @@ const SelectedStocks:React.FC = () => {
         </tr>
       </thead>
       <tbody>
-        {stocks.map((s: IStock, i: number) => (
-          <Stock key={i} {...s} />
+        {stocks.map((s: Stock, i: number) => (
+          <StockRow key={i} {...s} />
         ))}
         <Total />
       </tbody>
@@ -28,4 +29,4 @@ const SelectedStocks:React.FC = () => {
   );
 };
 
-export default SelectedStocks;
+export default StockTable;

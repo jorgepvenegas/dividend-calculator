@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
-import AppContext, { IStock } from "../../context/App";
-import { getDividend, getQuote } from "../../api";
+import AppContext from "../../context/App";
+import { getQuote } from "../../api";
+import { Stock } from "../../../types/main";
 
 const Search:React.FC = () => {
   const [term, setTerm] = useState("");
@@ -10,20 +11,18 @@ const Search:React.FC = () => {
     if (e.key === "Enter") {
 
       // Check if ticker is already present
-      const isPresent = !!stocks.find(s => s.symbol.toLowerCase() === term.toLocaleLowerCase());
+      const isPresent = !!stocks.find((s: { symbol: string; }) => s.symbol.toLowerCase() === term.toLocaleLowerCase());
 
       if(isPresent) {
         setTerm("");
         return;
       };
       
-      Promise.all([getDividend(term), getQuote(term)]).then((responses) => {
-        const [dividend, quote] = responses;
-        if (dividend && quote) {
-          const { dividendYield, companyName } = dividend;
-          const { symbol, close: sharePrice } = quote;
+      getQuote(term).then(response => {
+        // if (dividend && quote) {
+          const { dividendYield, companyName, symbol, close: sharePrice } : any = response;
 
-          const newStock: IStock = {
+          const newStock: Stock = {
             symbol,
             sharePrice,
             dividendYield: dividendYield
@@ -40,10 +39,12 @@ const Search:React.FC = () => {
             payload: newStock
           })
           setTerm("");
-        } else {
-          console.log(`Error adding ${term}.`);
-        }
-      });
+        // } else {
+          // }
+        })
+        .catch(err => {
+          console.error(`Error adding ${term}.`, err);
+        });
     } else {
       setTerm(term);
     }
