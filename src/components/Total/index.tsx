@@ -6,7 +6,7 @@ const Total:React.FC = () => {
   let totalOwned = 0;
   let totalDividends = 0;
 
-  stocks.forEach( s => {
+  stocks.forEach( (s: { totalOwned: number; totalDividends: number; }) => {
     totalOwned += s.totalOwned;
     totalDividends += s.totalDividends;
   })

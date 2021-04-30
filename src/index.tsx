@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import Search from "./components/Search";
 import SelectedStocks from "./components/SelectedStocks";
 import AppContext, { initialState, reducer } from "./context/App";
-
 import "./styles/main.css";
 
 const App:React.FC = () => {
@@ -20,4 +19,4 @@ const App:React.FC = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById("root"));

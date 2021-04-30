@@ -6,8 +6,8 @@ const Stock:React.FC<IStock> = (props) => {
   const { state: {stocks}, dispatch } = useContext(AppContext);
   const [sharesOwned, setSharesOwned] = useState(0);
 
-  const removeStock = ticker => {
-    const updatedStocks = stocks.filter( s => s.symbol !== ticker);
+  const removeStock = (ticker: string) => {
+    const updatedStocks = stocks.filter( (s: { symbol: string; }) => s.symbol !== ticker);
     dispatch({
       type: 'UPDATE_STOCKS',
       payload: updatedStocks
@@ -22,7 +22,7 @@ const Stock:React.FC<IStock> = (props) => {
       ((totalOwned * dividendYield) / 100).toFixed(2)
     );
 
-    const updatedStocks = stocks.map( s => {
+    const updatedStocks = stocks.map( (s: { symbol: string; }) => {
       if(s.symbol === symbol) {
         return {
           ...s,
