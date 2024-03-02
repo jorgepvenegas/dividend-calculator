@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Search from "./components/Search";
 import StockTable from "./components/StockTable";
 import AppContext, { initialState, reducer } from "./context/App";
-import "./styles/main.css";
+import "./index.css";
 
 const App:React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
